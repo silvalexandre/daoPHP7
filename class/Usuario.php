@@ -10,20 +10,20 @@ class Usuario{
         return $this->idusuario;
     }
     public function setIdusuario($value){
-        $this->usuario = $value;
+        $this->idusuario = $value;
     }
 
     public function getDeslogin(){
-        return $this->login;
+        return $this->deslogin;
     }
     public function setDeslogin($value){
-        $this->login = $value;
+        $this->deslogin = $value;
     }
     public function getDessenha(){
-        return $this->senha;
+        return $this->dessenha;
     }
     public function setDessenha($value){
-        $this->senha = $value;
+        $this->dessenha = $value;
     }
     public function getDtcadastro(){
         return $this->dtcadastro;
@@ -55,6 +55,52 @@ class Usuario{
         }
 
         
+    }
+
+    public static function getList(){
+        $sql = new Sql();
+
+        return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin");
+    }
+
+    public static function search($login){
+
+        $sql = new Sql();
+
+        return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
+
+            ':SEARCH'=>"%".$login."%"
+
+        ));
+
+    }
+
+    public function login($login, $password){
+
+        $sql = new Sql();
+
+        $results = $sql = new Sql();
+
+        $results = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
+
+            ":LOGIN"=>$login,
+            ":PASSWORD"=>$password
+
+
+        ));
+
+        if(count($results) > 0){
+            $row = $results[0];
+
+            $this->setIdusuario($row['idusuario']);
+            $this->setDeslogin($row['deslogin']);
+            $this->setDessenha($row['dessenha']);
+            $this->setDtcadastro(New DateTime($row['dtcadastro']));
+        } else {
+            throw new Exception("login e/ou senha não conferem");
+            
+        }
+
     }
 
     public function __toString(){

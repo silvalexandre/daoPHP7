@@ -26,13 +26,23 @@ echo json_encode($lista);
 
 //echo json_encode($buscaLogin);
 
-//carrega um usuário autenticado
+/*carrega um usuário autenticado
 
 $usuario = new Usuario();
 
 $usuario->login('alex', 'soma');
 
 echo $usuario;
+
+*/
+
+//INCLUI UM NOVO USUARIO NO BANCO DE DADOS
+
+$novoUsuario = new Usuario("maioral", "mekan");
+
+$novoUsuario->insert();
+
+echo $novoUsuario;
 
 
 ?>

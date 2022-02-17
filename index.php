@@ -36,13 +36,24 @@ echo $usuario;
 
 */
 
-//INCLUI UM NOVO USUARIO NO BANCO DE DADOS
+/*INCLUI UM NOVO USUARIO NO BANCO DE DADOS
 
 $novoUsuario = new Usuario("maioral", "mekan");
 
 $novoUsuario->insert();
 
 echo $novoUsuario;
+*/
 
+
+//Alterando dados de um usuario
+
+$userUp = new Usuario();
+
+$userUp->loadById(8);
+
+$userUp->update("profeta", "ceu");
+
+echo $userUp;
 
 ?>

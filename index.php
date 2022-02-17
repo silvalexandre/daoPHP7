@@ -46,13 +46,27 @@ echo $novoUsuario;
 */
 
 
-//Alterando dados de um usuario
+/*Alterando dados de um usuario
 
 $userUp = new Usuario();
 
-$userUp->loadById(8);
+$userUp->loadById(3);
 
-$userUp->update("profeta", "ceu");
+$userUp->update("santo", "321");
+
+echo $userUp;
+
+*/
+
+
+//Deletando dados do banco
+
+
+$userUp = new Usuario();
+
+$userUp->loadById(3);
+
+$userUp->delete("santo", "321");
 
 echo $userUp;
 
